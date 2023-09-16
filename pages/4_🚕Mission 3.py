@@ -13,12 +13,12 @@ def generate_surface_data():
 
 def generate_line_data():
     x = np.full((50), laps)
-    y = np.linspace(30, 300, 50)
+    y = np.linspace(0, 100, 50)
     z = 2+(x*y/battery_capacity)
     return x, y, z
 
 def generate_line_data2():
-    x = np.linspace(0, 300, 50)
+    x = np.linspace(0, 100, 50)
     y = np.full((50), passenger)
     z = 2+(x*y/battery_capacity)
     return x, y, z
@@ -40,7 +40,7 @@ input_form = st.sidebar.form("input_form")
 input_form.header("Set Input Variable")
 laps = input_form.number_input('#Laps (0-100)', 0, 100, 20)
 passenger = input_form.number_input('#Passenger (0-100)', 0, 100, 10)
-battery_capacity = input_form.number_input('Battery Capacity (1-10000)', 1, 10000, 5000)
+battery_capacity = input_form.number_input('Battery Capacity (1-30 Wh)', 1, 30, 20)
 submit_button = input_form.form_submit_button("Calculate Score and Update Graph", on_click=calculate())
 
 # 3. Description Section
@@ -67,7 +67,7 @@ with st.container():
     # Create a 3D surface plot using Plotly
     fig = go.Figure(data=[go.Surface(z=z, x=x, y=y)])
 
-    fig.update_layout(title=f'Score Graph @Battery Capacity: {battery_capacity}', autosize=False,
+    fig.update_layout(title=f'Score Graph @Battery Capacity: {battery_capacity}Wh', autosize=False,
                         width=800, height=800,
                         margin=dict(l=65, r=50, b=65, t=90))
 
@@ -92,7 +92,7 @@ with col1:
     df = pd.DataFrame(data=d)
 
     st.header(f'#Laps: {laps}')
-    st.subheader(f'Battery Capacity: {battery_capacity}')
+    st.subheader(f'Battery Capacity: {battery_capacity}Wh')
     st.line_chart(data=df, x='#Passengers', y='Score')
 
 
@@ -102,5 +102,5 @@ with col2:
     df = pd.DataFrame(data=d)
 
     st.header(f'#Passengers: {passenger}')
-    st.subheader(f'Battery Capacity: {battery_capacity}')
+    st.subheader(f'Battery Capacity: {battery_capacity}Wh')
     st.line_chart(data=df, x='#Laps', y='Score')

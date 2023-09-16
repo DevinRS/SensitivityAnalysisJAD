@@ -70,8 +70,8 @@ with st.container():
                         width=800, height=800,
                         margin=dict(l=65, r=50, b=65, t=90))
 
-    fig.update_layout(scene=dict(xaxis_title='Payload Weight',
-                                    yaxis_title='3-Lap Time',
+    fig.update_layout(scene=dict(xaxis_title='Payload Weight (lbs)',
+                                    yaxis_title='3-Lap Time (s)',
                                     zaxis_title='Score'))
 
     # Display the plot in Streamlit
@@ -86,18 +86,18 @@ if submit_button:
 
 col1, col2 = st.columns(2)
 with col1:
-    d = {'3-Lap Time': y2, 'Score': z2}
+    d = {'3-Lap Time (s)': y2, 'Score': z2}
 
     df = pd.DataFrame(data=d)
 
-    st.header(f'Payload Weight: {payload_weight}')
-    st.line_chart(data=df, x='3-Lap Time', y='Score')
+    st.header(f'Payload Weight: {payload_weight}lbs')
+    st.line_chart(data=df, x='3-Lap Time (s)', y='Score')
 
 
 with col2:
-    d = {'Payload Weight': x3, 'Score': z3}
+    d = {'Payload Weight (lbs)': x3, 'Score': z3}
 
     df = pd.DataFrame(data=d)
 
-    st.header(f'3-Lap Time: {lap_time}')
-    st.line_chart(data=df, x='Payload Weight', y='Score')
+    st.header(f'3-Lap Time: {lap_time}s')
+    st.line_chart(data=df, x='Payload Weight (lbs)', y='Score')
