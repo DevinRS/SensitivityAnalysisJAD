@@ -40,7 +40,7 @@ input_form = st.sidebar.form("input_form")
 input_form.header("Set Input Variable")
 laps = input_form.number_input('#Laps (0-100)', 0, 100, 20)
 passenger = input_form.number_input('#Passenger (0-100)', 0, 100, 10)
-battery_capacity = input_form.number_input('Battery Capacity (1-30 Wh)', 1, 30, 20)
+battery_capacity = input_form.number_input('Battery Capacity (1-100 Wh)', 1, 100, 20)
 submit_button = input_form.form_submit_button("Calculate Score and Update Graph", on_click=calculate())
 
 # 3. Description Section
