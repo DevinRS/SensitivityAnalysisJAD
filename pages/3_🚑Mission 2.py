@@ -5,21 +5,21 @@ import plotly.graph_objects as go
 import plotly.express as px
 
 def generate_surface_data():
-    x = np.linspace(0, 300, 50)
-    y = np.linspace(30, 300, 50)
+    x = np.linspace(0, 20, 50)
+    y = np.linspace(50, 300, 50)
     x, y = np.meshgrid(x, y)
     z = 1+(x/y)  # Replace this with your equation
     return x, y, z
 
 def generate_line_data():
-    x = np.full((50), payload_weight)
-    y = np.linspace(30, 300, 50)
+    x = np.full((100), payload_weight)
+    y = np.linspace(50, 300, 100)
     z = 1+(x/y)
     return x, y, z
 
 def generate_line_data2():
-    x = np.linspace(0, 300, 50)
-    y = np.full((50), lap_time)
+    x = np.linspace(0, 20, 100)
+    y = np.full((100), lap_time)
     z = 1+(x/y)
     return x, y, z
 
@@ -38,8 +38,8 @@ st.sidebar.success('Select Mission Above 👆')
 st.sidebar.title("Sensitivity Analysis")
 input_form = st.sidebar.form("input_form")
 input_form.header("Set Input Variable")
-payload_weight = input_form.number_input('Payload Weight (0-300 lbs)', 0, 300, 50)
-lap_time = input_form.number_input('3-Lap Time (30-300 s)', 30, 300, 100)
+payload_weight = input_form.number_input('Payload Weight (0-20 lbs)', 0., 20., 10., 1e-2)
+lap_time = input_form.number_input('3-Lap Time (50-300 s)', 50., 300., 100., 1e-2)
 submit_button = input_form.form_submit_button("Calculate Score and Update Graph", on_click=calculate())
 
 # 3. Description Section
@@ -90,7 +90,7 @@ with col1:
 
     df = pd.DataFrame(data=d)
 
-    st.header(f'Payload Weight: {payload_weight}lbs')
+    st.subheader(f'Payload Weight: {payload_weight}lbs')
     st.line_chart(data=df, x='3-Lap Time (s)', y='Score')
 
 
@@ -99,5 +99,5 @@ with col2:
 
     df = pd.DataFrame(data=d)
 
-    st.header(f'3-Lap Time: {lap_time}s')
+    st.subheader(f'3-Lap Time: {lap_time}s')
     st.line_chart(data=df, x='Payload Weight (lbs)', y='Score')
