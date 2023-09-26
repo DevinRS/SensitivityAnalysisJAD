@@ -10,7 +10,7 @@ st.set_page_config(
 )
 
 st.title('Multivariate Analysis Tool')
-uploaded_file = st.file_uploader("Choose a file", type='csv')
+uploaded_file = st.file_uploader("Choose a file", type='csv', key='page6upload')
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file)
 
