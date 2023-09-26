@@ -3,6 +3,7 @@ import pandas as pd
 import plotly.express as px
 
 
+
 # 1. Page Config
 st.set_page_config(
     page_title="Univariate Analysis Tool",
@@ -15,7 +16,6 @@ if uploaded_file is not None:
     
     # Can be used wherever a "file-like" object is accepted:
     df = pd.read_csv(uploaded_file)
-    st.write(df)
 
     columns = df.columns
     options = st.multiselect(

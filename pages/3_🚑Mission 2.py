@@ -8,23 +8,23 @@ def generate_surface_data():
     x = np.linspace(0, 20, 50)
     y = np.linspace(50, 300, 50)
     x, y = np.meshgrid(x, y)
-    z = 1+(x/y)  # Replace this with your equation
+    z = 1+((x/y)/0.4)  # Replace this with your equation
     return x, y, z
 
 def generate_line_data():
     x = np.full((100), payload_weight)
     y = np.linspace(50, 300, 100)
-    z = 1+(x/y)
+    z = 1+((x/y)/0.4)
     return x, y, z
 
 def generate_line_data2():
     x = np.linspace(0, 20, 100)
     y = np.full((100), lap_time)
-    z = 1+(x/y)
+    z = 1+((x/y)/0.4)
     return x, y, z
 
 def calculate():
-    ans = 1+(payload_weight/lap_time)
+    ans = 1+((payload_weight/lap_time)/0.4)
     st.sidebar.info(f"Score = {ans}")
 
 # 1. Page Config
