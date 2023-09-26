@@ -11,7 +11,7 @@ st.set_page_config(
 )
 
 st.title('Univariate Analysis Tool')
-uploaded_file = st.file_uploader("Choose a file", type='csv', key='page4upload')
+uploaded_file = st.file_uploader("Choose a file", type='csv', key='page5upload')
 if uploaded_file is not None:
     
     # Can be used wherever a "file-like" object is accepted:
